@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+<xsd:element name="root" msdata:IsDataSet="true">
+<xsd:complexType>
+<xsd:choice maxOccurs="unbounded">
+<xsd:element name="data">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+</xsd:sequence>
+<xsd:attribute name="name" type="xsd:string" />
+<xsd:attribute name="type" type="xsd:string" />
+<xsd:attribute name="mimetype" type="xsd:string" />
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="resheader">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+</xsd:sequence>
+<xsd:attribute name="name" type="xsd:string" use="required" />
+</xsd:complexType>
+</xsd:element>
+</xsd:choice>
+</xsd:complexType>
+</xsd:element>
+</xsd:schema>
+<resheader name="ResMimeType">
+<value>text/microsoft-resx</value>
+</resheader>
+<resheader name="Version">
+<value>1.0.0.0</value>
+</resheader>
+<resheader name="Reader">
+<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.3102.0, Culture=he, PublicKeyToken=b77a5c561934e089</value>
+</resheader>
+<resheader name="Writer">
+<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.3102.0, Culture=he, PublicKeyToken=b77a5c561934e089</value>
+</resheader>
+<data name="DATEFORMAT">
+<value>mm/dd/yyyy :פורמט תאריך שגוי. נדרש</value>
+</data>
+<data name="PHONEFORMAT">
+<value>פורמט שגוי למספר טלפון; xxx-xxx-xxxx</value>
+</data>
+<data name="IP_FORMAT">
+<value>כתובת IP אסורה; x??.x??.x??.x??</value>
+</data>
+<data name="SSNFORMAT">
+<value>SSN is not valid; xxx-xx-xxxx</value>
+</data>
+<data name="ONLYDIGIT">
+<value>רק ספרות מותרות במקום זה</value>
+</data>
+<data name="DAYNOTVALID">
+<value>ערך היום שגוי או חסר</value>
+</data>
+<data name="YEARSTARTWITH12">
+<value>שנה מתחילה בספרה 1 או 2 ואורכה 4 תווים</value>
+</data>
+<data name="ONLYDIGITANDSLASH">
+<value>רק ספרות ו-'/' מותרים במקום זה</value>
+</data>
+<data name="ONLYDIGITANDDASH">
+<value>רק ספרות ומכף('-') מותרים במקום זה</value>
+</data>
+<data name="NUMBERISSMALLERTHAN">
+<value>המספר צריך להיות קטן מ</value>
+</data>
+<data name="ONLYDIGITANDDOT">
+<value>רק ספרות ונקודה('.') מותרים במקום זה</value>
+</data>
+<data name="FIRSTMUSTBEDIGIT">
+<value>הכרחי כי התו הראשון יהיה תו ספרה</value>
+</data>
+<data name="YEARBETWEEN">
+<value>נדרש כי השנה תהיה בתחום</value>
+</data>
+<data name="DATEFORMATddmmyyyy">
+<value>dd/mm/yyyy :פורמט תאריך שגוי. נדרש</value>
+</data>
+</root>
