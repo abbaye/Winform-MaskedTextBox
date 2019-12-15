@@ -1,8 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaskedTextBox", "MaskedTextBox.csproj", "{71541787-A22D-4A65-9C71-7AB7DDF20919}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaskedTextBox.Sample.Winform", "MaskedTextBox.Sample.Winform\MaskedTextBox.Sample.Winform.csproj", "{BD084ED9-9668-47C1-B36E-1093970A92A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,8 +16,15 @@ Global
 		{71541787-A22D-4A65-9C71-7AB7DDF20919}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71541787-A22D-4A65-9C71-7AB7DDF20919}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71541787-A22D-4A65-9C71-7AB7DDF20919}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD084ED9-9668-47C1-B36E-1093970A92A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD084ED9-9668-47C1-B36E-1093970A92A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD084ED9-9668-47C1-B36E-1093970A92A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD084ED9-9668-47C1-B36E-1093970A92A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {08E65C6C-FB87-489B-A28D-6031D8A63681}
 	EndGlobalSection
 EndGlobal
