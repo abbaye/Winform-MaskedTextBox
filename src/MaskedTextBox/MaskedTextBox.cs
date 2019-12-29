@@ -8,23 +8,6 @@ namespace MaskedTextBox
 {
 	public class MaskedTextBox : TextBox
 	{
-		public enum Mask
-		{
-			None,
-			DateOnly,
-			PhoneWithArea,
-			IpAddress,
-			SSN,
-			Decimal,
-			Digit
-		}
-
-		public enum FormatDate
-		{
-			ddmmyyyy,
-			mmddyyyy
-		}
-
 		private static readonly ResourceManager rscMgr =
 			new ResourceManager("MaskedTextBox.MaskEditRes", typeof(MaskedTextBox).Assembly);
 

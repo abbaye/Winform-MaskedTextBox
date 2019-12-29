@@ -35,9 +35,9 @@
             // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.DateFormat = MaskedTextBox.FormatDate.ddmmyyyy;
+            this.maskedTextBox1.DateFormat = FormatDate.ddmmyyyy;
             this.maskedTextBox1.Location = new System.Drawing.Point(113, 29);
-            this.maskedTextBox1.Masked = MaskedTextBox.Mask.DateOnly;
+            this.maskedTextBox1.Masked = Mask.DateOnly;
             this.maskedTextBox1.MaxLength = 10;
             this.maskedTextBox1.MaxYear = 2050;
             this.maskedTextBox1.MinYear = 1980;
@@ -65,9 +65,9 @@
             // 
             // maskedTextBox2
             // 
-            this.maskedTextBox2.DateFormat = MaskedTextBox.FormatDate.ddmmyyyy;
+            this.maskedTextBox2.DateFormat = FormatDate.ddmmyyyy;
             this.maskedTextBox2.Location = new System.Drawing.Point(113, 55);
-            this.maskedTextBox2.Masked = MaskedTextBox.Mask.PhoneWithArea;
+            this.maskedTextBox2.Masked = Mask.PhoneWithArea;
             this.maskedTextBox2.MaxLength = 12;
             this.maskedTextBox2.MaxYear = 2050;
             this.maskedTextBox2.MinYear = 1980;
