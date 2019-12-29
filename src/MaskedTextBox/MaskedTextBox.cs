@@ -15,30 +15,42 @@ namespace MaskedTextBox
 	{
 
         #region Global variables
-        private Mask _mask;
-		private int _digitPos;
-		private int _delimitNumber;
-		private string _dateFormat = "dd/mm/yyyy";
-		private ErrorProvider _errorProvider;
-		private Container _components;
+		private int _digitPos = 0;
+		private int _delimitNumber = 0;
 		private int _minimalYear = 1900;
 		private int _maxYear = 2100;
+		private string _dateFormat = "dd/mm/yyyy";
+		private Mask _mask;
+		private ErrorProvider _errorProvider;
+		private Container _components = null;
 
 		private static readonly ResourceManager _resourceManager =
 			new ResourceManager("MaskedTextBox.MaskEditRes", typeof(MaskedTextBox).Assembly);
-        #endregion
+		#endregion
 
-        #region Constructor
-        public MaskedTextBox()
+		#region Constructor and component designer generated code
+		public MaskedTextBox()
 		{
 			InitializeComponent();
 
 			if (Masked != Mask.None)
 				_mask = Masked;
 		}
-        #endregion
 
-        public Mask Masked
+		private void InitializeComponent()
+		{
+			_errorProvider = new ErrorProvider
+			{
+				BlinkStyle = ErrorBlinkStyle.NeverBlink
+			};
+
+			KeyPress += new KeyPressEventHandler(MaskedTextBox_OnKeyPress);
+			Leave += new EventHandler(MaskedTextBox_OnLeave);
+		}
+		#endregion
+
+		#region Properties
+		public Mask Masked
 		{
 			get => _mask;
 			set
@@ -105,26 +117,10 @@ namespace MaskedTextBox
 		}
 		public string Error => _errorProvider.GetError(this);
 
-		private static string GetStr(string key) => _resourceManager.GetString(key);
+        #endregion
 
-		#region Component Designer generated code
-		private void InitializeComponent()
-		{
-			_components = null;
-			_digitPos = 0;
-			_delimitNumber = 0;
-
-			_errorProvider = new ErrorProvider
-			{
-				BlinkStyle = ErrorBlinkStyle.NeverBlink
-			};
-
-			KeyPress += new KeyPressEventHandler(OnKeyPress);
-			Leave += new EventHandler(OnLeave);
-		}
-		#endregion
-
-		private void OnKeyPress(object sender, KeyPressEventArgs e)
+        #region Events
+        private void MaskedTextBox_OnKeyPress(object sender, KeyPressEventArgs e)
 		{
 			var sd = (MaskedTextBox)sender;
 			switch (_mask)
@@ -152,7 +148,7 @@ namespace MaskedTextBox
 					break;
 			}
 		}
-		private void OnLeave(object sender, EventArgs e)
+		private void MaskedTextBox_OnLeave(object sender, EventArgs e)
 		{
 			var sd = (MaskedTextBox)sender;
 			Regex regStr;
@@ -166,23 +162,23 @@ namespace MaskedTextBox
 						if (!regStr.IsMatch(sd.Text))
 						{
 							if ("dd/mm/yyyy" == _dateFormat)
-								_errorProvider.SetError(this, GetStr("DATEFORMATddmmyyyy"));
+								_errorProvider.SetError(this, GetString("DATEFORMATddmmyyyy"));
 							else
-								_errorProvider.SetError(this, GetStr("DATEFORMAT"));
+								_errorProvider.SetError(this, GetString("DATEFORMAT"));
 						}
 
 						try
 						{
 							DateTime d = DateTime.Parse(Text);
 							if (d.Year < _minimalYear || _maxYear < d.Year)
-								_errorProvider.SetError(this, GetStr("YEARBETWEEN"));
+								_errorProvider.SetError(this, GetString("YEARBETWEEN"));
 						}
 						catch (FormatException)
 						{
 							if ("dd/mm/yyyy" == _dateFormat)
-								_errorProvider.SetError(this, GetStr("DATEFORMATddmmyyyy"));
+								_errorProvider.SetError(this, GetString("DATEFORMATddmmyyyy"));
 							else
-								_errorProvider.SetError(this, GetStr("DATEFORMAT"));
+								_errorProvider.SetError(this, GetString("DATEFORMAT"));
 						}
 					}
 					else
@@ -192,7 +188,7 @@ namespace MaskedTextBox
 					regStr = new Regex(@"\d{3}-\d{3}-\d{4}");
 
 					if (!regStr.IsMatch(sd.Text))
-						_errorProvider.SetError(this, GetStr("PHONEFORMAT"));
+						_errorProvider.SetError(this, GetString("PHONEFORMAT"));
 
 					break;
 				case Mask.IpAddress:
@@ -206,19 +202,19 @@ namespace MaskedTextBox
 							if (i + 1 < len)
 								if (sd.Text[i + 1] == '.')
 								{
-									_errorProvider.SetError(this, GetStr("IP_FORMAT"));
+									_errorProvider.SetError(this, GetString("IP_FORMAT"));
 									break;
 								}
 						}
 
 					if (cnt < 3 || sd.Text[len - 1] == '.')
-						_errorProvider.SetError(this, GetStr("IP_FORMAT"));
+						_errorProvider.SetError(this, GetString("IP_FORMAT"));
 
 					break;
 				case Mask.SSN:
 					regStr = new Regex(@"\d{3}-\d{2}-\d{4}");
 					if (!regStr.IsMatch(sd.Text))
-						_errorProvider.SetError(this, GetStr("SSNFORMAT"));
+						_errorProvider.SetError(this, GetString("SSNFORMAT"));
 					break;
 				case Mask.Decimal:
 					break;
@@ -226,6 +222,11 @@ namespace MaskedTextBox
 					break;
 			}
 		}
+        #endregion
+
+        #region Methods
+        private static string GetString(string key) => _resourceManager.GetString(key);
+
 		private void MaskDigit(KeyPressEventArgs e)
 		{
 			if (char.IsDigit(e.KeyChar) || e.KeyChar == 8)
@@ -236,7 +237,7 @@ namespace MaskedTextBox
 			else
 			{
 				e.Handled = true;
-				_errorProvider.SetError(this, GetStr("ONLYDIGIT"));
+				_errorProvider.SetError(this, GetString("ONLYDIGIT"));
 			}
 		}
 		private void MaskDecimal(KeyPressEventArgs e)
@@ -249,7 +250,7 @@ namespace MaskedTextBox
 			else
 			{
 				e.Handled = true;
-				_errorProvider.SetError(this, GetStr("ONLYDIGITANDDOT"));
+				_errorProvider.SetError(this, GetString("ONLYDIGITANDDOT"));
 			}
 		}
 
@@ -263,7 +264,7 @@ namespace MaskedTextBox
 
 			if (!char.IsDigit(e.KeyChar) && e.KeyChar != '/' && e.KeyChar != 8)
 			{
-				_errorProvider.SetError(this, GetStr("ONLYDIGITANDSLASH"));
+				_errorProvider.SetError(this, GetString("ONLYDIGITANDSLASH"));
 				
 				if (SelectedText == Text)
 					Text = string.Empty;
@@ -301,7 +302,7 @@ namespace MaskedTextBox
 				{
 					if (textValue.Length == 1 || textValue.Length == 4 || textValue.Length == 7)
 					{
-						_errorProvider.SetError(this, GetStr("ONLYDIGIT"));
+						_errorProvider.SetError(this, GetString("ONLYDIGIT"));
 						noError = false;
 					}
 					else if (textValue.Length == 2 || textValue.Length == 5)
@@ -326,7 +327,7 @@ namespace MaskedTextBox
 						case 2:
 							if (int.Parse(textValue) > 31)
 							{
-								_errorProvider.SetError(this, string.Format("{0} 31", GetStr("NUMBERISSMALLERTHAN")));
+								_errorProvider.SetError(this, string.Format("{0} 31", GetString("NUMBERISSMALLERTHAN")));
 								noError = false;
 							}
 							textValue += "/";
@@ -335,7 +336,7 @@ namespace MaskedTextBox
 							Regex regStr = new Regex(@"\d{2}/\d{1}");
 							if (!regStr.IsMatch(textValue))
 							{
-								_errorProvider.SetError(this, GetStr("DATEFORMATddmmyyyy"));
+								_errorProvider.SetError(this, GetString("DATEFORMATddmmyyyy"));
 								noError = false;
 							}
 							break;
@@ -346,7 +347,7 @@ namespace MaskedTextBox
 						case 5:
 							if (int.Parse(textValue.Substring(3, 2)) > 12)
 							{
-								_errorProvider.SetError(this, string.Format("{0} 12", GetStr("NUMBERISSMALLERTHAN")));
+								_errorProvider.SetError(this, string.Format("{0} 12", GetString("NUMBERISSMALLERTHAN")));
 								noError = false;
 							}
 							else
@@ -356,7 +357,7 @@ namespace MaskedTextBox
 							int year = int.Parse(textValue.Substring(6, 4));
 							if (year < _minimalYear || year > _maxYear)
 							{
-								_errorProvider.SetError(this, string.Format("{0}: {1:d}-{2:d}", GetStr("YEARBETWEEN"), _minimalYear, _maxYear));
+								_errorProvider.SetError(this, string.Format("{0}: {1:d}-{2:d}", GetString("YEARBETWEEN"), _minimalYear, _maxYear));
 								noError = false;
 							}
 							break;
@@ -365,7 +366,7 @@ namespace MaskedTextBox
 				if (textValue.Length == 6 && !CheckDayOfMonth(int.Parse(textValue.Substring(3, 2)), int.Parse(textValue.Substring(0, 2))))
 				{
 					noError = false;
-					_errorProvider.SetError(this, GetStr("DAYNOTVALID"));
+					_errorProvider.SetError(this, GetString("DAYNOTVALID"));
 				}
 
 				if (noError)
@@ -457,7 +458,7 @@ namespace MaskedTextBox
 									{
 										int m = int.Parse(Text.Substring(0, indx));
 										if (!CheckDayOfMonth(m, int.Parse(tmp2)))
-											_errorProvider.SetError(this, string.Format("{0} 31", GetStr("NUMBERISSMALLERTHAN")));
+											_errorProvider.SetError(this, string.Format("{0} 31", GetString("NUMBERISSMALLERTHAN")));
 										else
 										{
 											AppendText("/");
@@ -513,7 +514,7 @@ namespace MaskedTextBox
 			else
 			{
 				e.Handled = true;
-				_errorProvider.SetError(this, GetStr("ONLYDIGITANDSLASH"));
+				_errorProvider.SetError(this, GetString("ONLYDIGITANDSLASH"));
 			}
 		}
 		private void MaskPhoneSSN(KeyPressEventArgs e, int pos, int pos2)
@@ -585,7 +586,7 @@ namespace MaskedTextBox
 			else
 			{
 				e.Handled = true;
-				_errorProvider.SetError(this, GetStr("ONLYDIGITANDDASH"));
+				_errorProvider.SetError(this, GetString("ONLYDIGITANDDASH"));
 			}
 		}
 		private void MaskIpAddr(KeyPressEventArgs e)
@@ -623,7 +624,7 @@ namespace MaskedTextBox
 							string tmp2 = Text.Substring(indx + 1) + e.KeyChar;
 
 							if (int.Parse(tmp2) > 255) // check validation
-								_errorProvider.SetError(this, string.Format("{0} 255", GetStr("NUMBERISSMALLERTHAN")));
+								_errorProvider.SetError(this, string.Format("{0} 255", GetString("NUMBERISSMALLERTHAN")));
 							else
 							{
 								if (_delimitNumber < 3)
@@ -667,7 +668,7 @@ namespace MaskedTextBox
 			else
 			{
 				e.Handled = true;
-				_errorProvider.SetError(this, GetStr("ONLYDIGITANDDOT"));
+				_errorProvider.SetError(this, GetString("ONLYDIGITANDDOT"));
 			}
 		}
 
@@ -707,6 +708,7 @@ namespace MaskedTextBox
 			}
 			return ret;
 		}
+        #endregion
 
         #region Dispose overide
         protected override void Dispose(bool disposing)
