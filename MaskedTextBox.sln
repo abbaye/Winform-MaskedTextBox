@@ -2,9 +2,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaskedTextBox", "MaskedTextBox.csproj", "{71541787-A22D-4A65-9C71-7AB7DDF20919}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaskedTextBox", "src\MaskedTextBox\MaskedTextBox.csproj", "{71541787-A22D-4A65-9C71-7AB7DDF20919}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaskedTextBox.Sample.Winform", "MaskedTextBox.Sample.Winform\MaskedTextBox.Sample.Winform.csproj", "{BD084ED9-9668-47C1-B36E-1093970A92A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaskedTextBox.Sample.Winform", "src\MaskedTextBox.Sample.Winform\MaskedTextBox.Sample.Winform.csproj", "{BD084ED9-9668-47C1-B36E-1093970A92A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
