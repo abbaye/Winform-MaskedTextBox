@@ -1,3 +1,8 @@
+//////////////////////////////////////////////
+// MIT - 2004-2019
+// Author : Derek Tremblay (derektremblay666@gmail.com)
+//////////////////////////////////////////////
+
 using System;
 using System.ComponentModel;
 using System.Resources;
@@ -91,15 +96,6 @@ namespace MaskedTextBox
 		}
 
 		private static string GetStr(string key) => rscMgr.GetString(key);
-
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-				if (components != null)
-					components.Dispose();
-
-			base.Dispose(disposing);
-		}
 
 		#region Component Designer generated code
 		private void InitializeComponent()
@@ -573,7 +569,7 @@ namespace MaskedTextBox
 					if ((len - indx) == 1)
 					{
 						DelimitNumber--;
-						if ((indx) > -1)
+						if (indx > -1)
 							digitPos = len - indx;
 						else
 							digitPos--;
@@ -718,5 +714,16 @@ namespace MaskedTextBox
 			}
 			return ret;
 		}
-	}
+
+        #region Dispose overide
+        protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+				if (components != null)
+					components.Dispose();
+
+			base.Dispose(disposing);
+		}
+        #endregion
+    }
 }

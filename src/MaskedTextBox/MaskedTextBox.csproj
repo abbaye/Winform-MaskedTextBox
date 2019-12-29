@@ -37,6 +37,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="licenses.licx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="license.txt">
       <Pack>True</Pack>
       <PackagePath></PackagePath>

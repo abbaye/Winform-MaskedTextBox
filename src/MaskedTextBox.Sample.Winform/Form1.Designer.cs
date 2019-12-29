@@ -1,4 +1,5 @@
-﻿namespace MaskedTextBox.Sample.Winform
+﻿
+namespace MaskedTextBox.Sample.Winform
 {
     partial class Form1
     {
